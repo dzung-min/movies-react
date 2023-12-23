@@ -7,7 +7,7 @@
   align-items: center;
   height: 3rem;
   width: 100%;
-  background-color: black;
+  z-index: 9999;
 }
 
 .nav a {
@@ -23,4 +23,8 @@
   width: 20px;
   margin: 0 20px;
   cursor: pointer;
+}
+
+.dark {
+  background-color: black;
 }

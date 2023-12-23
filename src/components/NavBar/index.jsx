@@ -1,9 +1,27 @@
 import { NavLink } from "react-router-dom";
 import classes from "./NavBar.module.css";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useCallback } from "react";
 
 function NavBar() {
+  const [isDark, setIsDark] = useState(false);
+
+  const changeNavColorHandler = useCallback(() => {
+    window.scrollY > 100 ? setIsDark(true) : setIsDark(false);
+  });
+
+  useEffect(() => {
+    window.addEventListener("scroll", changeNavColorHandler);
+    return () => {
+      window.removeEventListener("scroll", changeNavColorHandler);
+    };
+  }, []);
+
+  const navClasses = isDark ? `${classes.nav} ${classes.dark}` : classes.nav;
+
   return (
-    <div className={classes.nav}>
+    <div className={navClasses}>
       <NavLink to="/">Movie App</NavLink>
       <NavLink to="/search">
         <svg

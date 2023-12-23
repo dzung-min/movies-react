@@ -1,0 +1,13 @@
+.movies {
+  height: 150px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding: 20px;
+  margin-bottom: 50px;
+}
+
+.title {
+  margin-left: 30px;
+  color: white;
+}
