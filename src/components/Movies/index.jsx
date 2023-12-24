@@ -3,9 +3,20 @@ import { useState } from "react";
 
 import MovieItem from "./../MovieItem";
 import classes from "./Movies.module.css";
+import MovieDetail from "../MovieDetail";
 
-function Movies({ title, url }) {
+function Movies({ title, url, isUsingPoster }) {
   const [movies, setMovies] = useState([]);
+  const [chooseedMovie, setChoosedMovie] = useState(null);
+
+  const movieListStyle = isUsingPoster ? classes.show : classes.movies;
+
+  function choosingMovieHandler(movie) {
+    setChoosedMovie((prevState) => {
+      if (prevState?.id === movie.id) return null;
+      else return movie;
+    });
+  }
 
   useEffect(() => {
     async function fetchMovies() {
@@ -23,11 +34,12 @@ function Movies({ title, url }) {
   }, []);
 
   const movieList = movies.map((movie) =>
-    movie["backdrop_path"] ? (
+    movie.backdrop_path && movie.poster_path ? (
       <MovieItem
         key={movie.id}
-        title={movie.title}
-        imageUrl={movie["backdrop_path"]}
+        movie={movie}
+        isUsingPoster={isUsingPoster}
+        onSelectMovie={choosingMovieHandler}
       />
     ) : null
   );
@@ -35,7 +47,8 @@ function Movies({ title, url }) {
   return (
     <div>
       {title && <h2 className={classes.title}>{title}</h2>}
-      <div className={classes.movies}>{movieList}</div>
+      <div className={movieListStyle}>{movieList}</div>
+      {chooseedMovie && <MovieDetail movie={chooseedMovie} />}
     </div>
   );
 }

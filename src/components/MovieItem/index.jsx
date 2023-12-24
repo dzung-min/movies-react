@@ -1,13 +1,27 @@
 import { IMG_URL_PREFIX } from "../../api";
 import classes from "./MovieItem.module.css";
 
-function MovieItem({ title, imageUrl, isUsingPoster }) {
+function MovieItem({ movie, isUsingPoster, onSelectMovie }) {
   const movieClass = isUsingPoster
     ? `${classes.movie} ${classes.poster}`
     : `${classes.movie} ${classes.backdrop}`;
+
+  const title = movie.name ? movie.name : movie.title;
   return (
-    <div className={movieClass}>
-      <img src={`${IMG_URL_PREFIX}${imageUrl}`} alt={title} />
+    <div
+      className={movieClass}
+      onClick={() => {
+        console.log(movie);
+        onSelectMovie(movie);
+      }}
+      data-id={movie.id}
+    >
+      <img
+        src={`${IMG_URL_PREFIX}${
+          isUsingPoster ? movie.poster_path : movie.backdrop_path
+        }`}
+        alt={title}
+      />
     </div>
   );
 }

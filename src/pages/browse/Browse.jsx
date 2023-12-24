@@ -33,7 +33,14 @@ function Browse() {
         title = "Tài Liệu";
         break;
     }
-    return <Movies key={endPoint} url={api[endPoint]} title={title} />;
+    return (
+      <Movies
+        key={endPoint}
+        url={api[endPoint]}
+        title={title}
+        isUsingPoster={false}
+      />
+    );
   });
   return (
     <div className="app">

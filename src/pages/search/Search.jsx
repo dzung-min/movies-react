@@ -1,7 +1,9 @@
+import SearchForm from "../../components/SearchForm";
+
 const Search = () => {
   return (
     <div className="app">
-      <h1>Search</h1>
+      <SearchForm />
     </div>
   );
 };

@@ -1,5 +1,5 @@
-.movies {
-  height: 150px;
+.movies,
+.show {
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
@@ -7,7 +7,18 @@
   margin-bottom: 50px;
 }
 
+.movies {
+  height: 150px;
+}
+
+.show {
+  height: 250px;
+  padding-top: 25px;
+  margin-top: 15px;
+}
+
 .title {
   margin-left: 30px;
   color: white;
+  font-weight: 400;
 }

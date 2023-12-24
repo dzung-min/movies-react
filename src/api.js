@@ -1,7 +1,8 @@
 const URL_PREFIX = "https://api.themoviedb.org/3";
-const API_KEY = "305c1f113377a22dbb322569c5ff54df";
+export const API_KEY = "305c1f113377a22dbb322569c5ff54df";
 
-export const IMG_URL_PREFIX = "https://image.tmdb.org/t/p/original";
+export const IMG_URL_PREFIX_ORIGINAL = "https://image.tmdb.org/t/p/original";
+export const IMG_URL_PREFIX = "https://image.tmdb.org/t/p/w500";
 
 const api = {
   fetchTrending: `${URL_PREFIX}/trending/all/week?api_key=${API_KEY}&language=en-US`,
