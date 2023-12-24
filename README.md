@@ -1,4 +1,8 @@
+# Developed with Node v20.10.0
+
 # React + Vite
+
+Run the command `npm run dev` in order to start playing with it
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

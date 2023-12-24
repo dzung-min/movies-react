@@ -45,11 +45,12 @@ function SearchForm() {
           <button onClick={submitHandler}>Search</button>
         </div>
       </div>
-      <div>
-        {searchTerm.length !== 0 ? (
+      {searchTerm.length !== 0 ? (
+        <div>
+          <p className={classes.result_title}>Search Result</p>
           <Movies title={null} url={url} isUsingPoster={true} />
-        ) : null}
-      </div>
+        </div>
+      ) : null}
     </>
   );
 }
