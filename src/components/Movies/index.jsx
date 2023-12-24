@@ -5,7 +5,7 @@ import MovieItem from "./../MovieItem";
 import classes from "./Movies.module.css";
 import MovieDetail from "../MovieDetail";
 
-function Movies({ title, url, isUsingPoster }) {
+function Movies({ title, url, isUsingPoster, isTvShow = false }) {
   const [movies, setMovies] = useState([]);
   const [chooseedMovie, setChoosedMovie] = useState(null);
 
@@ -31,7 +31,7 @@ function Movies({ title, url, isUsingPoster }) {
     }
 
     fetchMovies();
-  }, []);
+  }, [url]);
 
   const movieList = movies.map((movie) =>
     movie.backdrop_path && movie.poster_path ? (
@@ -48,7 +48,9 @@ function Movies({ title, url, isUsingPoster }) {
     <div>
       {title && <h2 className={classes.title}>{title}</h2>}
       <div className={movieListStyle}>{movieList}</div>
-      {chooseedMovie && <MovieDetail movie={chooseedMovie} />}
+      {chooseedMovie && (
+        <MovieDetail movie={chooseedMovie} isTvShow={isTvShow} />
+      )}
     </div>
   );
 }

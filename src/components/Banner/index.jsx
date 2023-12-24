@@ -46,6 +46,7 @@ export default function Banner() {
         title={null}
         url={api.fetchNetflixOriginals}
         isUsingPoster={true}
+        isTvShow={true}
       />
     </>
   ) : null;

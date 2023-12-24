@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { API_KEY, IMG_URL_PREFIX_ORIGINAL } from "../../api";
 import classes from "./MovieDetail.module.css";
 
-function MovieDetail({ movie }) {
+function MovieDetail({ movie, isTvShow }) {
   const [detailVideo, setDetailVideo] = useState(null);
 
   // Some movies or tv shows have "name" instead of "title" and "first_air_date" instead of "release_date"
@@ -12,7 +12,9 @@ function MovieDetail({ movie }) {
   const vote = movie.vote_average.toFixed(1);
 
   useEffect(() => {
-    const url = `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${API_KEY}`;
+    const url = isTvShow
+      ? `https://api.themoviedb.org/3/tv/${movie.id}/videos?api_key=${API_KEY}`
+      : `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${API_KEY}`;
 
     async function getVideo() {
       try {
