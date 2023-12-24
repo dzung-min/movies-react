@@ -5,33 +5,42 @@ import classes from "./MovieDetail.module.css";
 
 function MovieDetail({ movie }) {
   const [detailVideo, setDetailVideo] = useState(null);
+
+  // Some movies or tv shows have "name" instead of "title" and "first_air_date" instead of "release_date"
   const title = movie.name ? movie.name : movie.title;
   const date = movie.release_date ? movie.release_date : movie.first_air_date;
   const vote = movie.vote_average.toFixed(1);
+
   useEffect(() => {
     const url = `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${API_KEY}`;
+
     async function getVideo() {
       try {
         const resp = await fetch(url);
         if (!resp.ok) throw new Error("Can not fetch videos");
         const data = await resp.json();
+
         const filteredVideos = data.results.filter(
           (video) =>
             (video.type === "Trailer" || video.type === "Teaser") &&
             video.site === "YouTube"
         );
+
+        // sort the list of videos in order to get the one with type "Trailer" (if there is one available)
         const video = filteredVideos.sort((a, b) => {
           if (a.type > b.type) return -1;
           else return 1;
         })[0];
-        console.log(video);
+
         setDetailVideo(video);
       } catch (error) {
         console.log(error.message);
       }
     }
+
     getVideo();
   }, [movie]);
+
   return (
     <div className={classes.container}>
       <div className={classes.info}>
@@ -49,6 +58,7 @@ function MovieDetail({ movie }) {
       </div>
       {detailVideo ? (
         <div className={classes.video}>
+          {/* I can fetch the video successfully, but it couldn't be played in development enviroment using localhost */}
           <iframe
             src={`https://www.youtube.com/embed/${detailVideo.id}`}
           ></iframe>

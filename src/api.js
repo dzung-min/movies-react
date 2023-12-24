@@ -1,7 +1,9 @@
 const URL_PREFIX = "https://api.themoviedb.org/3";
 export const API_KEY = "305c1f113377a22dbb322569c5ff54df";
 
+// for high quality images
 export const IMG_URL_PREFIX_ORIGINAL = "https://image.tmdb.org/t/p/original";
+// for lower quality image
 export const IMG_URL_PREFIX = "https://image.tmdb.org/t/p/w500";
 
 const api = {

@@ -11,7 +11,6 @@ function MovieItem({ movie, isUsingPoster, onSelectMovie }) {
     <div
       className={movieClass}
       onClick={() => {
-        console.log(movie);
         onSelectMovie(movie);
       }}
       data-id={movie.id}
