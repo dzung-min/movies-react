@@ -31,7 +31,6 @@ function MovieDetail({ movie }) {
           if (a.type > b.type) return -1;
           else return 1;
         })[0];
-
         setDetailVideo(video);
       } catch (error) {
         console.log(error.message);
@@ -58,9 +57,8 @@ function MovieDetail({ movie }) {
       </div>
       {detailVideo ? (
         <div className={classes.video}>
-          {/* I can fetch the video successfully, but it couldn't be played in development enviroment using localhost */}
           <iframe
-            src={`https://www.youtube.com/embed/${detailVideo.id}`}
+            src={`https://www.youtube.com/embed/${detailVideo.key}`}
           ></iframe>
         </div>
       ) : (
